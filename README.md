@@ -202,5 +202,3 @@ The checked-in EDA evidence includes:
 - 0 protocol errors
 - 0 scoreboard data mismatches
 
-This repository does **not** claim UCDB/VDB merge or commercial coverage database signoff. The included coverage dashboard is a static/manual evidence dashboard built from real EDA Playground logs.
-
