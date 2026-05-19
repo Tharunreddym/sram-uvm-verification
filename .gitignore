@@ -1,0 +1,22 @@
+# Simulator outputs
+work/
+qrun.out/
+simv*
+csrc/
+*.vcd
+*.wlf
+*.ucdb
+*.vdb
+*.log
+*.key
+*.history
+*.jou
+
+# Python
+__pycache__/
+*.pyc
+
+# OS/editor
+.DS_Store
+.vscode/
+.idea/
