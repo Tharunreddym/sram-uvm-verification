@@ -119,9 +119,13 @@ module sram_banked_ctrl_lp_tb;
 
     // Same row in another bank must remain independent.
     write_word(2'd1, 4'd3, 32'h5A5A_BEEF);
+    #1;
+    if (dut.mem[1][3] !== 32'h5A5A_BEEF)
+      $fatal(1, "Bank 1 write was not stored: mem=%08h state=%0d req_ready=%b bank_clk_en=%b",
+             dut.mem[1][3], dut.u_bank_pm.bank_state[1], req_ready, bank_clk_en[1]);
     read_word(2'd1, 4'd3, read_value);
     if (read_value !== 32'h5A5A_BEEF)
-      $fatal(1, "Bank 1 readback mismatch: %08h", read_value);
+      $fatal(1, "Bank 1 readback mismatch: %08h mem=%08h", read_value, dut.mem[1][3]);
 
     wait (&bank_sleep);
     if (restore_events < 2)
