@@ -202,3 +202,10 @@ The checked-in EDA evidence includes:
 - 0 protocol errors
 - 0 scoreboard data mismatches
 
+
+
+## Banked SRAM Low-Power Extension
+
+The low_power/ directory adds an independently gated banked SRAM behavioral variant with per-bank ACTIVE/SLEEP/WAKE control, idle timeout, retention request pulses, and parameterized wake-up. A request wakes only its addressed bank; readback verifies data is preserved through the modeled sleep interval.
+
+Run make -C low_power test. This extension is additive and does not change the original synchronous SRAM controller or its regression flow. The latch-based ICG and retention handshake are implementation models; use a characterized library ICG or macro-native enables and real retention cells for silicon implementation. No physical power reduction is claimed.

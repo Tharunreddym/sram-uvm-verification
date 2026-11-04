@@ -1,0 +1,23 @@
+name: Low-Power RTL Smoke Test
+
+on:
+  push:
+    paths:
+      - "low_power/**"
+      - ".github/workflows/low-power-smoke.yml"
+  pull_request:
+    paths:
+      - "low_power/**"
+  workflow_dispatch:
+
+jobs:
+  sram-bank-power:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install Icarus Verilog
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y iverilog
+      - name: Run banked SRAM low-power test
+        run: make -C low_power test
