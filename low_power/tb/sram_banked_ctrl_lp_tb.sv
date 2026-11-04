@@ -17,8 +17,10 @@ module sram_banked_ctrl_lp_tb;
 
   always #5 clk = ~clk;
   always @(posedge clk) begin
-    if (retention_save != 0) save_events = save_events + 1;
-    if (retention_restore != 0) restore_events = restore_events + 1;
+    for (integer bank = 0; bank < 4; bank = bank + 1) begin
+      if (retention_save[bank]) save_events = save_events + 1;
+      if (retention_restore[bank]) restore_events = restore_events + 1;
+    end
   end
 
   sram_banked_ctrl_lp #(
