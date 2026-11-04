@@ -96,6 +96,9 @@ module sram_banked_ctrl_lp_tb;
 
     // All four idle banks should independently enter retention sleep.
     wait (&bank_sleep);
+    // The monitor samples registered pulse outputs on the following clock.
+    @(posedge clk);
+    #1;
     if (bank_clk_en != 4'b0000)
       $fatal(1, "Bank clocks must be gated in sleep");
     if (save_events < 4)
