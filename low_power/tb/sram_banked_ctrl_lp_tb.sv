@@ -48,6 +48,7 @@ module sram_banked_ctrl_lp_tb;
       rd_en = 1'b0;
       wr_en = 1'b1;
       wdata = value;
+      #1; // allow bank-select decode and req_ready to settle after driving the request
       wait (req_ready === 1'b1);
       @(posedge clk);
       #1;
@@ -69,6 +70,7 @@ module sram_banked_ctrl_lp_tb;
       req_row = row;
       rd_en = 1'b1;
       wr_en = 1'b0;
+      #1; // allow bank-select decode and req_ready to settle after driving the request
       wait (req_ready === 1'b1);
       @(posedge clk);
       #1;
